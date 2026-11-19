@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fffafa;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 16px;
+}
+
+.box--header  { grid-area: header; }
+.box--nav     { grid-area: nav; }
+.box--main    { grid-area: main; min-height: 220px; }
+.box--sidebar { grid-area: sidebar; }
+.box--ads     { grid-area: ads; }
+.box--footer  { grid-area: footer; }
+
+/* Mobile-first */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "sidebar"
+    "ads"
+    "footer";
+}
+
+/* Tablet: від 768px */
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "header  header"
+      "nav     nav"
+      "sidebar main"
+      "ads     footer";
+  }
+
+  .box--main {
+    min-height: 260px;
+  }
+}
+
+/* Desktop: від 1024px */
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 190px 1fr 190px;
+    grid-template-areas:
+      "header  header  header"
+      "sidebar nav     ads"
+      "sidebar main    ads"
+      "footer  footer  footer";
+  }
+}
+
+.box {
+  border: 2px solid #ff5733;
+  background-color: #ffffff;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: "Times New Roman", Georgia, serif;
+  padding: 20px;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 6 колонок та 12 рядків (12 * 40px = 480px висоти сітки) */
+.tree-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(12, 40px);
+  gap: 8px;
+  counter-reset: block-counter;
+}
+
+.node {
+  background-color: #fdd835;
+  color: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4px;
+  font-size: 0.9rem;
+  counter-increment: block-counter;
+}
+
+/* Нумерація через генерований вміст (generated content) */
+.node::before {
+  content: counter(block-counter);
+}
+
+/* Колонка 1: 1 блок по 12 рядків */
+.node:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / span 12;
+}
+
+/* Колонка 2: 2 блоки по 6 рядків */
+.node:nth-child(2) { grid-column: 2; grid-row: 1 / span 6; }
+.node:nth-child(3) { grid-column: 2; grid-row: 7 / span 6; }
+
+/* Колонка 3: 3 блоки по 4 рядки */
+.node:nth-child(4) { grid-column: 3; grid-row: 1 / span 4; }
+.node:nth-child(5) { grid-column: 3; grid-row: 5 / span 4; }
+.node:nth-child(6) { grid-column: 3; grid-row: 9 / span 4; }
+
+/* Колонка 4: 4 блоки по 3 рядки */
+.node:nth-child(7)  { grid-column: 4; grid-row: 1 / span 3; }
+.node:nth-child(8)  { grid-column: 4; grid-row: 4 / span 3; }
+.node:nth-child(9)  { grid-column: 4; grid-row: 7 / span 3; }
+.node:nth-child(10) { grid-column: 4; grid-row: 10 / span 3; }
+
+/* Колонка 5: 6 блоків по 2 рядки */
+.node:nth-child(11) { grid-column: 5; grid-row: 1 / span 2; }
+.node:nth-child(12) { grid-column: 5; grid-row: 3 / span 2; }
+.node:nth-child(13) { grid-column: 5; grid-row: 5 / span 2; }
+.node:nth-child(14) { grid-column: 5; grid-row: 7 / span 2; }
+.node:nth-child(15) { grid-column: 5; grid-row: 9 / span 2; }
+.node:nth-child(16) { grid-column: 5; grid-row: 11 / span 2; }
+
+/* Колонка 6: 12 блоків по 1 рядку */
+.node:nth-child(17) { grid-column: 6; grid-row: 1 / span 1; }
+.node:nth-child(18) { grid-column: 6; grid-row: 2 / span 1; }
+.node:nth-child(19) { grid-column: 6; grid-row: 3 / span 1; }
+.node:nth-child(20) { grid-column: 6; grid-row: 4 / span 1; }
+.node:nth-child(21) { grid-column: 6; grid-row: 5 / span 1; }
+.node:nth-child(22) { grid-column: 6; grid-row: 6 / span 1; }
+.node:nth-child(23) { grid-column: 6; grid-row: 7 / span 1; }
+.node:nth-child(24) { grid-column: 6; grid-row: 8 / span 1; }
+.node:nth-child(25) { grid-column: 6; grid-row: 9 / span 1; }
+.node:nth-child(26) { grid-column: 6; grid-row: 10 / span 1; }
+.node:nth-child(27) { grid-column: 6; grid-row: 11 / span 1; }
+.node:nth-child(28) { grid-column: 6; grid-row: 12 / span 1; }
+
+/* Адаптивність для планшетів (до 768px) */
+@media (max-width: 768px) {
+  .tree-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: 44px;
+  }
+
+  .node {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+/* Адаптивність для мобільних екранів (до 576px) */
+@media (max-width: 576px) {
+  .tree-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+}

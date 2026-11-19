@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fffafa;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 16px;
+}
+
+/* Mobile-first: 1 колонка */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto minmax(220px, 1fr) auto auto auto;
+  gap: 10px;
+}
+
+.box {
+  border: 2px solid #ff5733;
+  background-color: #ffffff;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+}
+
+.box--header   { grid-column: 1 / -1; grid-row: 1; }
+.box--nav      { grid-column: 1 / -1; grid-row: 2; }
+.box--main     { grid-column: 1 / -1; grid-row: 3; min-height: 220px; }
+.box--sidebar  { grid-column: 1 / -1; grid-row: 4; }
+.box--ads      { grid-column: 1 / -1; grid-row: 5; }
+.box--footer   { grid-column: 1 / -1; grid-row: 6; }
+
+/* Tablet: від 768px — 2 колонки */
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto minmax(260px, 1fr) auto;
+  }
+
+  .box--header  { grid-column: 1 / -1; grid-row: 1; }
+  .box--nav     { grid-column: 1 / -1; grid-row: 2; }
+  .box--sidebar { grid-column: 1; grid-row: 3; }
+  .box--main    { grid-column: 2; grid-row: 3; min-height: 260px; }
+  .box--ads     { grid-column: 1; grid-row: 4; }
+  .box--footer  { grid-column: 2; grid-row: 4; }
+}
+
+/* Desktop: від 1024px — 3 колонки */
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 190px 1fr 190px;
+    grid-template-rows: auto auto minmax(260px, 1fr) auto;
+  }
+
+  .box--header  { grid-column: 1 / -1; grid-row: 1; }
+  .box--sidebar { grid-column: 1; grid-row: 2 / 4; }
+  .box--nav     { grid-column: 2; grid-row: 2; }
+  .box--main    { grid-column: 2; grid-row: 3; min-height: 260px; }
+  .box--ads     { grid-column: 3; grid-row: 2 / 4; }
+  .box--footer  { grid-column: 1 / -1; grid-row: 4; }
+}
